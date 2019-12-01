@@ -37,135 +37,209 @@ $bold: 600;
 }
 
 body {
-  height: 100vh;
   font-family: "Josefin Sans", sans-serif;
   font-size: $body-size;
+  font-weight: $medium;
 }
 
 /* MAIN */
-
 main {
-  height: 100vh;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 100px auto 25px;
   grid-template-areas:
-    "header header header hero hero"
-    "panel panel panel hero hero"
-    "footer footer footer hero hero";
+    "header hero"
+    "panel hero";
   align-items: center;
+  justify-content: center;
   background-image: url("../images/bg-pattern-desktop.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-width: 350px;
 }
 
 /* HEADER */
 header {
   grid-area: header;
   display: flex;
-  height: 5.25rem;
+  height: 4rem;
   justify-content: flex-start;
   align-items: center;
 
   img {
-    padding: 2rem 10rem;
+    padding: 2rem 9rem;
   }
 }
 
 /* HERO */
-
 .hero {
   grid-area: hero;
   order: 1;
-
+  height: 100vh;
   img {
-    object-fit: cover;
-    width: 100%;
-    height: auto;
+    height: 100vh;
     &.hero-mobile {
       display: none;
     }
   }
 }
 
+/* Panel */
 .panel {
   grid-area: panel;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 10rem;
+  align-content: center;
+  padding: 5rem 9rem;
   text-align: left;
-  text-transform: uppercase;
-  width: 100%;
 
-  height: 100%;
   .title {
-    letter-spacing: 2rem;
+    letter-spacing: 1.5rem;
     font-size: 3rem;
+    text-transform: uppercase;
     font-weight: $bold;
     color: $dark-greyish-red;
-    &.red {
+    .red {
       font-weight: $light;
       color: $pale-red;
     }
   }
 
   .intro {
-    font-size: 0.75rem;
+    margin-top: 2.5rem;
+    font-size: 0.875rem;
     line-height: 1.75rem;
     color: $pale-red;
+    max-width: 75%;
   }
 
   form.email {
-    box-sizing: content-box;
-    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    max-width: 75%;
     margin-top: 3rem;
     display: flex;
-    flex-direction: row;
-    border: solid 1px rgba($dark-greyish-red, 0.7);
+    align-items: center;
+    border: solid 1px rgba($dark-greyish-red, 0.2);
     justify-content: space-between;
     border-radius: 4rem;
-    padding: 0rem 2rem;
+    padding: 0.75rem 2rem;
+    padding-right: 0;
     outline: none;
+    &.error-form {
+      border: solid 2px rgba($soft-red, 0.9);
+    }
+
     input {
+      font-family: inherit;
       border: none;
-      width: 100%;
+      width: 80%;
       color: $pale-red;
       font-weight: $medium;
+      border: none;
+      font-size: 0.875rem;
+      background: none;
+      word-wrap: break-word;
+      word-break: break-all;
+      height: 1.5rem;
+      &.icon-error {
+        background: url("../images/icon-error.svg");
+        background-repeat: no-repeat;
+        background-position: 90%;
+      }
+      &:focus {
+        outline: none;
+      }
     }
+
     button {
+      box-sizing: border-box;
+      position: absolute;
+      right: -1rem;
       background: $grad-red-to-white;
       border-radius: 4rem;
-      padding: 1rem 2rem;
+      padding: 1.1rem 2.7rem;
       border: none;
+      box-shadow: -2px 10px 32px 1px $pale-red;
+      transition: all 0.3s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
       img {
         border: none;
       }
+      &:hover {
+        box-shadow: -2px 10px 32px 4px $pale-red;
+      }
     }
   }
-}
 
-footer {
-  grid-area: footer;
+  h5 {
+    display: none;
+  }
+
+  h5.error-message {
+    display: block;
+    font-size: 0.6875;
+    color: $soft-red;
+    position: relative;
+    left: 3rem;
+    top: 10px;
+  }
 }
 
 @media screen and (max-width: 800px) {
   main {
-    background-color: red;
-    grid-template-columns: 1fr;
-    grid-template-rows: 100px auto 1fr 25px;
+    background: white;
     grid-template-areas:
       "header"
       "hero"
-      "panel"
-      "footer";
+      "panel";
+  }
+  header {
+    padding: 1rem;
+    justify-content: flex-start;
+    img {
+      padding: 2rem 1rem;
+    }
   }
 
   .hero {
+    height: auto;
+    max-width: 100%;
+    width: 100%;
     img {
       &.hero-mobile {
         display: inline-block;
+        max-width: 100%;
+        width: 100%;
+        height: auto;
       }
       &.hero-desktop {
         display: none;
+      }
+    }
+  }
+
+  .panel {
+    padding: 0;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+    .intro {
+      max-width: 80%;
+    }
+    .title {
+      letter-spacing: 1rem;
+      font-size: 2rem;
+      padding: 4rem auto;
+    }
+
+    form.email {
+      margin: 2rem 4rem;
+      width: 80%;
+
+      button {
+        padding: 0.9rem 1.625rem;
       }
     }
   }
