@@ -199,6 +199,10 @@ header img {
           box-shadow: -2px 10px 32px 4px #ce9797;
 }
 
+.panel form.email button:focus {
+  outline: 0;
+}
+
 .panel h5 {
   display: none;
 }

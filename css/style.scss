@@ -170,6 +170,9 @@ header {
       &:hover {
         box-shadow: -2px 10px 32px 4px $pale-red;
       }
+      &:focus {
+        outline: 0;
+      }
     }
   }
 
